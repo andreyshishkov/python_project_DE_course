@@ -1,4 +1,4 @@
-from analysis_tools import read_sales_data, total_sales_per_product
+from analysis_tools import read_sales_data, total_sales_per_product, sales_over_time
 from datetime import date
 
 
@@ -34,4 +34,19 @@ def test_total_sales_per_product():
     test_path = 'tests/test_data.txt'
     data = read_sales_data(test_path)
     result = total_sales_per_product(data)
+    assert true_result == result
+
+
+def test_sales_over_time():
+    true_result = {
+        date(2024, 6, 21): 150,
+        date(2024, 6, 22): 176,
+        date(2024, 6, 19): 300,
+        date(2024, 6, 20): 698,
+        date(2024, 6, 16): 315,
+        date(2024, 6, 24): 242,
+    }
+    test_path = 'tests/test_data.txt'
+    data = read_sales_data(test_path)
+    result = sales_over_time(data)
     assert true_result == result
