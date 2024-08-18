@@ -1,5 +1,6 @@
 from datetime import date
 from typing import Any
+from collections import defaultdict
 
 
 def read_sales_data(file_path: str) -> list[dict[str, Any]]:
@@ -16,6 +17,16 @@ def read_sales_data(file_path: str) -> list[dict[str, Any]]:
         data.append(sale_dict)
 
     return data
+
+
+def total_sales_per_product(sales_data: list[dict[str, Any]]) -> dict[str, int]:
+    total_sales = defaultdict(int)
+    for record in sales_data:
+        product_name = record['product_name']
+        sale = record['quantity'] * record['price']
+        total_sales[product_name] += sale
+
+    return dict(total_sales)
 
 
 def transform_dict(data_dict):
