@@ -29,6 +29,15 @@ def total_sales_per_product(sales_data: list[dict[str, Any]]) -> dict[str, int]:
     return dict(total_sales)
 
 
+def sales_over_time(sales_data: list[dict[str, Any]]) -> dict[date, int]:
+    date_sales = defaultdict(int)
+    for record in sales_data:
+        timestamp = record['date']
+        sale = record['quantity'] * record['price']
+        date_sales[timestamp] += sale
+    return dict(date_sales)
+
+
 def transform_dict(data_dict):
     data_dict['quantity'] = int(data_dict['quantity'])
     data_dict['price'] = int(data_dict['price'])
