@@ -1,5 +1,6 @@
 from analysis_tools import read_sales_data, sales_over_time, total_sales_per_product
 from datetime import date
+from make_plots import make_sale_product_plot, make_sale_date_plot
 
 
 def get_max_sales_product(sales_per_product: dict[str, int]) -> str:
@@ -24,8 +25,11 @@ def main():
     max_sales_date = get_date_of_max_sale(sales_per_date)
     print(f'Дата наибольшей суммы продаж: {max_sales_date}')
 
+    make_sale_product_plot(sales_per_product)
+    make_sale_date_plot(sales_per_date)
+
+    print('Графики распределения выручки по продуктам и дате успешно созданы')
+
 
 if __name__ == '__main__':
     main()
-
-
